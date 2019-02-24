@@ -5,15 +5,21 @@ let y;
 let ballWidth;
 const totalFrames = 250;
 let counter = 0;
-const record = false;
+const record = true;
 const colorSky = '#29ADFF';
 const colorBody = '#FFA300';
 const colorWall = '#AB5236';
+let capturer;
+let canvas;
 
 function setup() {
-  createCanvas(300, 300);
+  canvas = createCanvas(300, 300);
   y = height / 1.6;
   ballWidth = 80;
+  if (record) {
+    capturer = new CCapture({ format: 'gif', workersPath: '../node_modules/ccapture.js/src/' });
+    capturer.start();
+  }
 }
 
 function draw() {
@@ -25,9 +31,11 @@ function draw() {
   }
   render(percent);
   if (record) {
-    save(`output/gif-${nf(counter, 3)}.png`);
+    capturer.capture(document.getElementById('defaultCanvas0'));
     if (counter === totalFrames - 1) {
       noLoop();
+      capturer.stop();
+      capturer.save();
     }
   }
   counter++;
