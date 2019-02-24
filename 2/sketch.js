@@ -12,36 +12,21 @@ const colorWall = '#AB5236';
 let capturer;
 let canvas;
 
-function setup() {
-  canvas = createCanvas(300, 300);
-  y = height / 1.6;
-  ballWidth = 80;
-  if (record) {
-    capturer = new CCapture({ format: 'gif', workersPath: '../node_modules/ccapture.js/src/' });
-    capturer.start();
-  }
-}
+const startRecording = () => {
+  capturer = new CCapture({ format: 'gif', workersPath: '../node_modules/ccapture.js/src/' });
+  capturer.start();
+};
 
-function draw() {
-  let percent = 0;
-  if (record) {
-    percent = float(counter) / totalFrames;
-  } else {
-    percent = float(counter % totalFrames) / totalFrames;
+const stopRecording = () => {
+  capturer.capture(document.getElementById('defaultCanvas0'));
+  if (counter === totalFrames - 1) {
+    noLoop();
+    capturer.stop();
+    capturer.save();
   }
-  render(percent);
-  if (record) {
-    capturer.capture(document.getElementById('defaultCanvas0'));
-    if (counter === totalFrames - 1) {
-      noLoop();
-      capturer.stop();
-      capturer.save();
-    }
-  }
-  counter++;
-}
+};
 
-render = (percent) => {
+const render = (percent) => {
   const eyeWidth = ballWidth / 3;
   let x;
   let leftEyeX;
@@ -77,3 +62,22 @@ render = (percent) => {
   fill(colorWall);
   rect(0, height / 2, width, height / 2);
 };
+
+function setup() {
+  canvas = createCanvas(300, 300);
+  y = height / 1.6;
+  ballWidth = 80;
+  if (record) startRecording();
+}
+
+function draw() {
+  const percent = (record)
+    ? float(counter) / totalFrames
+    : float(counter % totalFrames) / totalFrames;
+
+  render(percent);
+
+  if (record) stopRecording();
+
+  counter++;
+}
