@@ -57,7 +57,6 @@ render = (percent) => {
   circle(width / 2, topY, ballWidth);
   rect(width / 2 - ballWidth, topY, ballWidth * 2, height / 2);
   circle(width / 2, topY, ballWidth);
-  // console.log( y + 80 * sin(a));
 
   fill(255);
   circle(width / 2 - eyeWidth, topY - 20, eyeWidth);
