@@ -3,7 +3,7 @@
 /* eslint-disable no-unused-vars */
 const totalFrames = 250;
 let capturer;
-const record = true;
+const record = false;
 let counter = 0;
 
 const startRecording = () => {

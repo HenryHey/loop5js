@@ -4,6 +4,8 @@
 const totalFrames = 250;
 let capturer;
 const record = false;
+let counter = 0;
+let repeat = 1;
 
 const startRecording = () => {
   capturer = new CCapture({ format: 'gif', workersPath: '../node_modules/ccapture.js/src/' });
@@ -13,6 +15,11 @@ const startRecording = () => {
 const stopRecording = () => {
   capturer.capture(document.getElementById('defaultCanvas0'));
   if (counter === totalFrames - 1) {
+    if (repeat > 0) {
+      repeat--;
+      counter = 0;
+      return;
+    }
     noLoop();
     capturer.stop();
     capturer.save();
