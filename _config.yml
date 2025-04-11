@@ -1,0 +1,21 @@
+title: Loop5js
+description: >-
+  Jekyll site for loop5js project
+baseurl: "/loop5js" # the subpath of your site, e.g. /blog
+url: "" # the base hostname & protocol for your site, e.g. http://example.com
+
+# Build settings
+markdown: kramdown
+theme: minima
+
+# Exclude from processing
+exclude:
+  - node_modules/
+  - .vscode/
+  - package.json
+  - package-lock.json
+  - .gitignore
+  - .eslintrc.js
+  - Gemfile
+  - Gemfile.lock
+  - LICENSE

@@ -1,6 +1,3 @@
-/* eslint-disable no-plusplus */
-/* eslint-disable no-undef */
-/* eslint-disable no-unused-vars */
 const totalFrames = 200;
 let capturer;
 const record = false;

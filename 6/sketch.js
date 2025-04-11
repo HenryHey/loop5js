@@ -1,6 +1,3 @@
-/* eslint-disable no-plusplus */
-/* eslint-disable no-undef */
-/* eslint-disable no-unused-vars */
 const totalFrames = 500;
 let capturer;
 const record = false;
@@ -9,7 +6,6 @@ let repeat = 1;
 
 
 const startRecording = () => {
-  // capturer = new CCapture({ format: 'gif', workersPath: '../node_modules/ccapture.js/src/' });
   capturer = new CCapture({ format: 'webm' });
   capturer.start();
 };

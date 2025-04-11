@@ -1,11 +1,8 @@
-/* eslint-disable no-plusplus */
-/* eslint-disable no-undef */
-/* eslint-disable no-unused-vars */
 let y;
 let ballWidth;
 const totalFrames = 250;
 let counter = 0;
-const record = true;
+const record = false;
 const colorSky = '#29ADFF';
 const colorBody = '#FFA300';
 const colorWall = '#AB5236';

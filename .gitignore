@@ -1,3 +1,14 @@
 .vscode
 .DS_Store
 node_modules
+# Jekyll build files
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+.bundle/
+vendor/
+
+# Generated files
+*.webm
+*.gif
