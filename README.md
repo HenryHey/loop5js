@@ -17,3 +17,5 @@ To run the Jekyll site locally:
 ### Deployment
 
 The site is automatically deployed to GitHub Pages using the GitHub Actions workflow defined in `.github/workflows/jekyll-gh-pages.yml`. No manual deployment is necessary.
+
+Check the [live site](https://henryhey.github.io/loop5js/)
