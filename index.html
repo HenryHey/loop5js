@@ -3,11 +3,192 @@ layout: default
 title: "Home"
 ---
 
-<a href="1">1</a>
-<a href="2">2</a>
-<a href="3">3</a>
-<a href="4">4</a>
-<a href="5">5</a>
-<a href="6">6</a>
-<a href="7">7</a>
-<a href="8">8</a>
+<div class="carousel-container">
+    <div class="carousel">
+        <div class="carousel-items">
+            <!-- Sketches will be loaded here -->
+        </div>
+    </div>
+    <div class="controls">
+        <button class="prev">❮</button>
+        <button class="next">❯</button>
+    </div>
+    <div class="dots-container"></div>
+</div>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        background-color: #f0f0f0;
+    }
+
+    .carousel-container {
+        width: 90%;
+        max-width: 800px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .carousel {
+        position: relative;
+        width: 100%;
+        height: 660px;
+        overflow: hidden;
+        margin: 0 auto;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        background-color: white;
+    }
+
+    .carousel-items {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        transition: transform 0.5s ease;
+    }
+
+    .carousel-item {
+        min-width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .carousel-item iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+        overflow: hidden;
+    }
+
+    .controls {
+        margin-top: 10px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .controls button {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        padding: 10px 16px;
+        margin: 0 10px;
+        cursor: pointer;
+        font-size: 18px;
+        outline: none;
+        transition: background-color 0.3s;
+    }
+
+    .controls button:hover {
+        background-color: #3e8e41;
+    }
+
+    .dots-container {
+        margin-top: 10px;
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background-color: #bbb;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .dot.active {
+        background-color: #4CAF50;
+    }
+
+    .sketch-info {
+        margin-top: 20px;
+    }
+
+    .view-button {
+        display: inline-block;
+        background-color: #4CAF50;
+        color: white;
+        text-decoration: none;
+        padding: 8px 16px;
+        border-radius: 4px;
+        margin-top: 10px;
+        transition: background-color 0.3s;
+    }
+
+    .view-button:hover {
+        background-color: #3e8e41;
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Configuration
+        const totalSketches = 8; // Update this if you add more sketches
+
+        // Elements
+        const carouselItems = document.querySelector('.carousel-items');
+        const dotsContainer = document.querySelector('.dots-container');
+        const currentSketchNumber = document.getElementById('current-sketch-number');
+        const prevButton = document.querySelector('.prev');
+        const nextButton = document.querySelector('.next');
+
+        let currentIndex = 0;
+
+        // Initialize carousel
+        function initializeCarousel() {
+            // Create sketches
+            for (let i = 1; i <= totalSketches; i++) {
+                const item = document.createElement('div');
+                item.className = 'carousel-item';
+
+                const iframe = document.createElement('iframe');
+                iframe.src = `${i}/`;
+                iframe.loading = 'lazy'; // Lazy load iframes
+
+                item.appendChild(iframe);
+                carouselItems.appendChild(item);
+
+                // Create dot for this sketch
+                const dot = document.createElement('div');
+                dot.className = 'dot';
+                if (i === 1) dot.classList.add('active');
+                dot.addEventListener('click', () => goToSlide(i - 1));
+                dotsContainer.appendChild(dot);
+            }
+        }
+
+        // Go to specific slide
+        function goToSlide(index) {
+            if (index < 0) index = totalSketches - 1;
+            if (index >= totalSketches) index = 0;
+
+            currentIndex = index;
+            carouselItems.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+            // Update the active dot
+            document.querySelectorAll('.dot').forEach((dot, i) => {
+                dot.classList.toggle('active', i === currentIndex);
+            });
+
+            // Update sketch info
+            currentSketchNumber.textContent = currentIndex + 1;
+        }
+
+        // Event listeners
+        prevButton.addEventListener('click', () => goToSlide(currentIndex - 1));
+        nextButton.addEventListener('click', () => goToSlide(currentIndex + 1));
+
+        // Initialize
+        initializeCarousel();
+    });
+</script>
