@@ -8,7 +8,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const prevButton = document.querySelector('.prev');
     const nextButton = document.querySelector('.next');
 
-    let currentIndex = 0;
+    // Start with a random sketch
+    let currentIndex = Math.floor(Math.random() * totalSketches);
 
     // Initialize carousel
     function initializeCarousel() {
@@ -27,10 +28,13 @@ document.addEventListener('DOMContentLoaded', function () {
             // Create dot for this sketch
             const dot = document.createElement('div');
             dot.className = 'dot';
-            if (i === 1) dot.classList.add('active');
+            if (i - 1 === currentIndex) dot.classList.add('active');
             dot.addEventListener('click', () => goToSlide(i - 1));
             dotsContainer.appendChild(dot);
         }
+
+        // Go to the random sketch on initial load
+        goToSlide(currentIndex);
     }
 
     // Go to specific slide
