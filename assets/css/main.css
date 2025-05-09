@@ -3,9 +3,10 @@ body {
     margin: 0;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     min-height: 100vh;
+    position: relative;
 }
 
 .site-title {
@@ -17,5 +18,36 @@ body {
 
 canvas {
     display: block;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.site-footer {
+    width: 100%;
+    padding: 15px 0;
+    margin-top: auto;
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+    font-family: sans-serif;
+    font-size: 14px;
+}
+
+.footer-content {
+    max-width: 800px;
     margin: 0 auto;
+}
+
+.site-footer a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.site-footer a:hover {
+    opacity: 0.8;
 }

@@ -20,6 +20,14 @@
     <h1 class="site-title">loop5js</h1>
     {% endif %}
     {{ content }}
+
+    {% if page.url == '/' %}
+    <footer class="site-footer">
+        <div class="footer-content">
+            <p>loop5js by <a href="https://linktr.ee/emasdeu">Enric Masdeu</a></p>
+        </div>
+    </footer>
+    {% endif %}
 </body>
 
 </html>
