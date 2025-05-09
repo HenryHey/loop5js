@@ -16,6 +16,9 @@
 </head>
 
 <body>
+    {% if page.url == '/' %}
+    <h1 class="site-title">loop5js</h1>
+    {% endif %}
     {{ content }}
 </body>
 
